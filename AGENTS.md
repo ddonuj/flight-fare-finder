@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application conventions
+- Use PascalCase for new shared React component filenames; TanStack route filenames retain route conventions so generation stays valid.
+- Keep one root auth subscriber and shared auth context; use the protected pathless layout for private pages to prevent competing session guards.
+- Keep styling in global semantic tokens and shared components so the landing page and account pages remain consistent.
