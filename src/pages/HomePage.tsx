@@ -1,20 +1,10 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { Link } from 'react-router';
 import { ArrowRight, BellRing, Radar, Mail, CircleCheck, Plane } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SiteHeader, SiteFooter } from '@/components/SiteHeader';
 import { useAuth } from '@/components/AuthContext';
 import hero from '@/assets/flight-sunrise.png.asset.json';
-
-export const Route = createFileRoute('/')({
-  head: () => ({ meta: [
-    { title: 'Flight Price Notifier｜機票降價通知' },
-    { name: 'description', content: '設定航線與目標價，機票降價就通知你。追蹤台北出發的熱門航線，等到你的理想價格。' },
-    { property: 'og:title', content: 'Flight Price Notifier｜機票降價通知' },
-    { property: 'og:description', content: 'Set a route and a target price — we email you when the fare drops.' },
-    { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' },
-  ] }),
-  component: Index,
-});
+import { usePageMeta } from '@/hooks/use-page-meta';
 
 const features = [
   { icon: Radar, title: '盯緊熱門航線', english: 'Always-on route watching', description: '持續監控台北出發的熱門航線（東京、首爾），自動抓最低票價。' },
@@ -22,7 +12,8 @@ const features = [
   { icon: CircleCheck, title: '隨時取消', english: 'Cancel anytime', description: '月訂閱制，不想用隨時停，沒有綁約。' },
 ];
 
-function Index() {
+export function HomePage() {
+  usePageMeta({ title: 'Flight Price Notifier｜機票降價通知', description: '設定航線與目標價，機票降價就通知你。追蹤台北出發的熱門航線，等到你的理想價格。' });
   const { user } = useAuth();
   return <div className="site-page"><SiteHeader /><main>
     <section className="hero"><img className="hero-image" src={hero.url} alt="日出時分，飛機機翼掠過雲海" /><div className="hero-overlay" />

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from 'react-router';
 import { ArrowRight, Eye, EyeOff, LockKeyhole, LoaderCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -20,7 +20,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
       const result = signup ? await supabase.auth.signUp({ email, password, options: { emailRedirectTo: window.location.origin } }) : await supabase.auth.signInWithPassword({ email, password });
       if (result.error) { setError(result.error.message === 'Invalid login credentials' ? 'Email 或密碼不正確，請再試一次。' : result.error.message); return; }
       if (!result.data.session) { setConfirmation(true); return; }
-      await navigate({ to: '/app', replace: true });
+      await navigate('/app', { replace: true });
     } catch { setError('目前無法連線，請稍後再試。'); } finally { setPending(false); }
   }
   return <div className="site-page"><SiteHeader /><main className="auth-main"><div className="auth-panel">
