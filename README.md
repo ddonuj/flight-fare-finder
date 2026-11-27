@@ -22,3 +22,11 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Static SPA build (Vercel)
+
+The app is a plain Vite + React single-page app with client-side routing (React Router).
+
+- `npm run build` emits static files to `dist/`.
+- `vercel.json` rewrites every path to `index.html`, so deep links such as `/app` resolve in the browser.
+- Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in the Vercel project if they are not provided by `.env`.

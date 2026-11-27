@@ -1,4 +1,4 @@
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from 'react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { Plane, ArrowUpRight, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ export function SiteHeader() {
     queryClient.clear();
     const { error } = await supabase.auth.signOut();
     if (error) return;
-    await navigate({ to: '/auth', replace: true });
+    await navigate('/auth', { replace: true });
   }
   return <header className="site-header"><div className="page-width header-inner">
     <Link to="/" className="brand" aria-label="Flight Price Notifier 首頁"><span className="brand-icon"><Plane /></span><span>Flight Price <span className="brand-light">Notifier</span></span></Link>
