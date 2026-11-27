@@ -29,4 +29,14 @@ The app is a plain Vite + React single-page app with client-side routing (React 
 
 - `npm run build` emits static files to `dist/`.
 - `vercel.json` rewrites every path to `index.html`, so deep links such as `/app` resolve in the browser.
-- Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in the Vercel project if they are not provided by `.env`.
+
+## Backend (Supabase)
+
+The app talks to our own Supabase project (`flight-price-notifier-001`, ref `ikpmacrsqrfotfdztkra`) through a single client in `src/integrations/supabase/client.ts`. It reads two Vite env vars:
+
+| Variable | Value |
+| --- | --- |
+| `VITE_SUPABASE_URL` | `https://ikpmacrsqrfotfdztkra.supabase.co` |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | the project's `sb_publishable_*` key (browser-safe, RLS-gated) |
+
+Locally they come from `.env` (see `.env.example`). On Vercel, add both under Project Settings → Environment Variables; they are baked in at build time, so redeploy after changing them.
